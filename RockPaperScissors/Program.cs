@@ -15,7 +15,9 @@ namespace RockPaperScissors
             { "Unpredictable Joe", new RandomAI() },
             { "Stubborn Benny", new StubbornAI(0) },
             { "Clever Cleaver", new ShortAttentionSpanAI() },
-            //{ "YetAnother", new YetAnotherAI() },
+            { "Smarty Pants", new ThinkAheadAI() },
+            // Not complete
+            //{ "Hubris", new UnbeatableAI() }, 
         };
 
         static void Main(string[] args)
@@ -28,10 +30,12 @@ namespace RockPaperScissors
             }
             while (true)
             {
-                Console.WriteLine("\n1. Human vs AI");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("1. Human vs AI");
                 Console.WriteLine("2. AI vs AI");
                 Console.WriteLine("3. Quit");
-                Console.Write("> ");
+                Console.Write("\n> ");
+                Console.ResetColor();
                 int choice = Convert.ToInt32(Console.ReadLine());
 
                 if (choice == 1)
@@ -98,8 +102,9 @@ namespace RockPaperScissors
                 return -1;
             }
 
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine("{0}\t{1}", MoveToString(p1Choice), MoveToString(p2Choice));
-
+            Console.ResetColor();
             int winner = CalculateWinner(p1Choice, p2Choice);
 
             player1.SaveResult(p1Choice, p2Choice);
@@ -110,16 +115,25 @@ namespace RockPaperScissors
 
         static string SelectAI()
         {
-            Console.WriteLine("Select an AI:");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\nSelect an AI:\n");
 
             // Show each of the possible opponents
             for (int i = 0; i < AIPlayers.Keys.Count; i++)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+
                 Console.WriteLine("{0}. {1}", i + 1, AIPlayers.Keys.ElementAt(i));
             }
-
-            Console.Write("> ");
+            Console.ResetColor();
+            Console.Write("\n> ");
             int aiChoice = Convert.ToInt32(Console.ReadLine());
+
+            if (aiChoice == 5)
+            {
+                UnbeatableAI getSex = new UnbeatableAI();
+                getSex.getSex();
+            }
             return AIPlayers.Keys.ElementAt(aiChoice - 1);
         }
 

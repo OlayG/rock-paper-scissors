@@ -50,6 +50,8 @@
     <Compile Include="RandomAI.cs" />
     <Compile Include="ShortAttentionSpanAI.cs" />
     <Compile Include="StubbornAI.cs" />
+    <Compile Include="ThinkAheadAI.cs" />
+    <Compile Include="UnbeatableAI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
